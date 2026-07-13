@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://csa0teqgfd8wn"]
+
+[ext_resource type="Script" uid="uid://ca32igl0uh1k3" path="res://player.gd" id="1_j35kn"]
+[ext_resource type="Script" uid="uid://61vqol3s6q2w" path="res://projectile.gd" id="2_5y5ao"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gv4ug"]
+size = Vector3(9.015182, 1, 11.163008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3k4a"]
+albedo_color = Color(1.2032688e-08, 0.16126248, 0.19793528, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y1pi2"]
+material = SubResource("StandardMaterial3D_e3k4a")
+size = Vector3(9, 1.0163574, 11)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h1mgu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1pi2"]
+albedo_color = Color(0, 0.6326768, 0.22727755, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_h1mgu"]
+material = SubResource("StandardMaterial3D_y1pi2")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h1mgu"]
+
+[node name="Node3D" type="Node3D" unique_id=244439099]
+
+[node name="Stage" type="StaticBody3D" parent="." unique_id=917493159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020830393, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage" unique_id=1433529428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5103006, -0.0120065, -3.732324)
+shape = SubResource("BoxShape3D_gv4ug")
+debug_color = Color(0.11793838, 0.5914326, 0.7242615, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stage" unique_id=908690329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5216348, -0.0043172836, -3.637586)
+mesh = SubResource("BoxMesh_y1pi2")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=457215161]
+transform = Transform3D(0.4995182, 0.0053943326, -0.021272158, -0.0042515714, 0.49926475, 0.026770337, 0.021529693, -0.026563661, 0.49882948, 0.5993825, 1.1774946, -0.010493942)
+script = ExtResource("1_j35kn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1980615359]
+transform = Transform3D(1, 0, 0, 0, 0.9965558, -0.08292485, 0, 0.08292485, 0.9965558, 0, -0.0010932684, 0)
+shape = SubResource("SphereShape3D_h1mgu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=319742818]
+mesh = SubResource("SphereMesh_h1mgu")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=1629274179]
+transform = Transform3D(1.9828256, 0.19649702, -0.1725992, 0.074611336, 0.8400444, 1.8134936, 0.25066856, -1.8043598, 0.8255005, -0.09972525, 4.3848286, 0.8906869)
+fov = 92.81249
+near = 0.005
+far = 4002.55
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1515974375]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 1.355362, 1.9628015, 0)
+script = ExtResource("2_5y5ao")
+
+[node name="Area3D" type="Area3D" parent="Node3D" unique_id=1584855414]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Area3D" unique_id=2025372270]
+shape = SubResource("CapsuleShape3D_h1mgu")
