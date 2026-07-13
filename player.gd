@@ -1,10 +1,19 @@
 extends CharacterBody3D
 
 
+@export var projectile_blueprint: PackedScene
+
 const SPEED = 5.0
 const DASH_VELOCITY = 20
 
 
+func shoot() -> void: 
+	var new_projectile = projectile_blueprint.instantiate()
+	owner.add_child(new_projectile)
+	
+	print("Bang!")
+	
+	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -21,6 +30,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
+	if Input.is_action_pressed("shoot"):
+		shoot()
 	
 
 	move_and_slide()

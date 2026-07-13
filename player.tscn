@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c7mit0cjacpbr"]
+
+[ext_resource type="Script" uid="uid://0lofld5nfu4l" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://c3kie0xjil7s1" path="res://projectile.tscn" id="2_onrkg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h1mgu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1pi2"]
+albedo_color = Color(0, 0.6326768, 0.22727755, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_h1mgu"]
+material = SubResource("StandardMaterial3D_y1pi2")
+
+[node name="Player" type="CharacterBody3D" unique_id=1996616343]
+transform = Transform3D(0.4995182, 0.0053943326, -0.021272158, -0.0042515714, 0.49926475, 0.026770337, 0.021529693, -0.026563661, 0.49882948, 0, 0, 0)
+script = ExtResource("1_4flbx")
+projectile_blueprint = ExtResource("2_onrkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1497907126]
+transform = Transform3D(1, 0, 0, 0, 0.9965558, -0.08292485, 0, 0.08292485, 0.9965558, 0, -0.0010932684, 0)
+shape = SubResource("SphereShape3D_h1mgu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=191123590]
+mesh = SubResource("SphereMesh_h1mgu")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1625431029]
+transform = Transform3D(1.9828256, 0.19649702, -0.1725992, 0.074611336, 0.8400444, 1.8134936, 0.25066856, -1.8043598, 0.8255005, -0.09972525, 4.3848286, 0.8906869)
+fov = 92.81249
+near = 0.005
+far = 4002.55
