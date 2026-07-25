@@ -6,13 +6,8 @@ extends CharacterBody3D
 const SPEED = 5.0
 const DASH_VELOCITY = 20
 
-
-func shoot() -> void: 
-	var new_projectile = projectile_blueprint.instantiate()
-	owner.add_child(new_projectile)
-	
-	print("Bang!")
-	
+@onready var attackCooldown = $AttackCooldown
+@onready var stateMachine = $StateMachine
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -30,8 +25,35 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") && attackCooldown.time_left == 0:
 		shoot()
-	
 
 	move_and_slide()
+
+func shoot() -> void: 
+	#prevents crashes if scene is missing
+	if not projectile_blueprint: return
+	
+	var new_projectile = projectile_blueprint.instantiate() as Projectile
+	owner.add_child(new_projectile)
+	
+	#spawn projectile at player pos
+	new_projectile.global_position = self.global_position
+	
+	#get moust pos
+	var mouse_pos = get_viewport().get_mouse_position()
+	
+	# Get player in screen pixels (Vector2)
+	var camera = get_viewport().get_camera_3d()
+	var player_screen_pos = camera.unproject_position(self.global_position)
+	
+	# Calculate a 2D direction vector on the screen
+	var screen_direction = (mouse_pos - player_screen_pos).normalized()
+	
+	# Convert that 2D direction into a 3D target destination
+	# We map screen X to world X, and screen Y to world Y (or world Z)
+	var target_3d_position = self.global_position + Vector3(screen_direction.x, 0.0, screen_direction.y)
+	
+	new_projectile.launch(target_3d_position)
+	
+	attackCooldown.start()

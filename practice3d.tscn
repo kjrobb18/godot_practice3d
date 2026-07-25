@@ -1,16 +1,25 @@
 [gd_scene format=3 uid="uid://csa0teqgfd8wn"]
 
 [ext_resource type="PackedScene" uid="uid://c7mit0cjacpbr" path="res://player.tscn" id="1_5y5ao"]
+[ext_resource type="Script" uid="uid://basvqjho10hqt" path="res://enemy.gd" id="2_5y5ao"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gv4ug"]
-size = Vector3(9.015182, 1, 11.163008)
+size = Vector3(63.507946, 1, 53.05601)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3k4a"]
 albedo_color = Color(1.2032688e-08, 0.16126248, 0.19793528, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_y1pi2"]
 material = SubResource("StandardMaterial3D_e3k4a")
-size = Vector3(9, 1.0163574, 11)
+size = Vector3(63.12097, 1.0163574, 53.53955)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yq2i7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5wh8"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_yq2i7"]
+material = SubResource("StandardMaterial3D_m5wh8")
 
 [node name="Node3D" type="Node3D" unique_id=244439099]
 
@@ -18,16 +27,26 @@ size = Vector3(9, 1.0163574, 11)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020830393, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stage" unique_id=1433529428]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5103006, -0.0120065, -3.732324)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23244166, -0.0120065, -11.50803)
 shape = SubResource("BoxShape3D_gv4ug")
 debug_color = Color(0.11793838, 0.5914326, 0.7242615, 0.41960785)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Stage" unique_id=908690329]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5216348, -0.0043172836, -3.637586)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15567183, -0.0043172836, -11.529432)
 mesh = SubResource("BoxMesh_y1pi2")
 
 [node name="Player" parent="." unique_id=1996616343 instance=ExtResource("1_5y5ao")]
-transform = Transform3D(0.4995182, 0.0053943326, -0.021272158, -0.0042515714, 0.49926475, 0.026770338, 0.021529693, -0.026563663, 0.49882948, 0.5993825, 1.1774946, -0.010493942)
+transform = Transform3D(0.4995182, 0.0053943326, -0.021272158, -0.0042515714, 0.49926475, 0.026770338, 0.021529693, -0.026563663, 0.49882948, 0.5993825, 1.3865985, -0.010493942)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1198806136]
 transform = Transform3D(-0.027395913, 0.9987987, 0.04062718, -0.5584166, -0.04900106, 0.82811224, 0.82910824, 0, 0.55908823, 2.931861, 6.2403245, 0)
+
+[node name="Enemy" type="Area3D" parent="." unique_id=1253461898]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.31144, 1.5849215, 0)
+script = ExtResource("2_5y5ao")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy" unique_id=1838437415]
+shape = SubResource("SphereShape3D_yq2i7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy" unique_id=1400658630]
+mesh = SubResource("SphereMesh_yq2i7")

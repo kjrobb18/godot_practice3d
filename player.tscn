@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://0lofld5nfu4l" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://c3kie0xjil7s1" path="res://projectile.tscn" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://dt84jt1flpkup" path="res://state_machine.gd" id="3_i3pqv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_h1mgu"]
 
@@ -28,3 +29,11 @@ transform = Transform3D(1.9828256, 0.19649702, -0.1725992, 0.074611336, 0.840044
 fov = 92.81249
 near = 0.005
 far = 4002.55
+
+[node name="AttackCooldown" type="Timer" parent="." unique_id=15421821]
+wait_time = 0.1
+one_shot = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=1214422998]
+script = ExtResource("3_i3pqv")
+metadata/_custom_type_script = "uid://dt84jt1flpkup"

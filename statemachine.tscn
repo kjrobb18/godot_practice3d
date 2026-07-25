@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c107y06q4xajj"]
+
+[ext_resource type="Script" uid="uid://dt84jt1flpkup" path="res://state_machine.gd" id="1_n7kpq"]
+[ext_resource type="Script" uid="uid://cqipjyrn4xxr8" path="res://idle_state.gd" id="2_2kbbl"]
+[ext_resource type="Script" uid="uid://cn4ifkqcpa7sh" path="res://move_state.gd" id="3_f8kof"]
+[ext_resource type="Script" uid="uid://d1gfxtv7b1doq" path="res://dash_state.gd" id="4_spmae"]
+
+[node name="StateMachine" type="Node3D" unique_id=1611928015]
+script = ExtResource("1_n7kpq")
+
+[node name="IdleState" type="Node3D" parent="." unique_id=1368439948]
+script = ExtResource("2_2kbbl")
+
+[node name="MoveState" type="Node3D" parent="." unique_id=2042384095]
+script = ExtResource("3_f8kof")
+
+[node name="DashState" type="Node3D" parent="." unique_id=1305621284]
+script = ExtResource("4_spmae")
