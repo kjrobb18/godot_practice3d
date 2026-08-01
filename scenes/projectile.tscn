@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c3kie0xjil7s1"]
+
+[ext_resource type="Script" uid="uid://c3jajk7momv8o" path="res://scripts/projectile.gd" id="1_a85iw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h1mgu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5wh8"]
+albedo_color = Color(1, 0.14509805, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yq2i7"]
+material = SubResource("StandardMaterial3D_m5wh8")
+
+[node name="Projectile" type="Area3D" unique_id=1952180980]
+transform = Transform3D(0.02, 0, 0, 0, -8.7422775e-10, -0.02, 0, 0.02, -8.7422775e-10, 0, 0, 0)
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("1_a85iw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2002456052]
+shape = SubResource("CapsuleShape3D_h1mgu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=91282974]
+mesh = SubResource("CapsuleMesh_yq2i7")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

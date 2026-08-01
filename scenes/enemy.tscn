@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://b612k8wdclwqt"]
+
+[ext_resource type="Script" uid="uid://basvqjho10hqt" path="res://scripts/enemy.gd" id="1_7p1mj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yq2i7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5wh8"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_yq2i7"]
+material = SubResource("StandardMaterial3D_m5wh8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqwlj"]
+albedo_color = Color(0.9463613, 0.37426835, 1.5661287, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_h1mgu"]
+material = SubResource("StandardMaterial3D_hqwlj")
+radius = 0.06
+height = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h1mgu"]
+radius = 9.048282
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y1pi2"]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=189233782]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_7p1mj")
+speed = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1521817803]
+shape = SubResource("SphereShape3D_yq2i7")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="." unique_id=1794623149]
+mesh = SubResource("SphereMesh_yq2i7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="BodyMesh" unique_id=413427829]
+transform = Transform3D(0.9984894, 0, 0.0549411, 0, 0.99999976, 0, -0.0549411, 0, 0.9984894, 0.14617161, 0.17908657, 0.46140245)
+mesh = SubResource("SphereMesh_h1mgu")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="BodyMesh" unique_id=154355749]
+transform = Transform3D(0.9984894, 0, 0.0549411, 0, 0.99999976, 0, -0.0549411, 0, 0.9984894, -0.11859109, 0.17908657, 0.46140245)
+mesh = SubResource("SphereMesh_h1mgu")
+skeleton = NodePath("../..")
+
+[node name="PatrolTimer" type="Timer" parent="." unique_id=524052904]
+wait_time = 2.687
+one_shot = true
+
+[node name="AggroZone" type="Area3D" parent="." unique_id=1090406251]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroZone" unique_id=1875877069]
+shape = SubResource("SphereShape3D_h1mgu")
+
+[node name="HitBox" type="Area3D" parent="." unique_id=35621788]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=2021380071]
+transform = Transform3D(0.9998254, -0.015067792, 0.011043271, 0.015152914, 0.9998558, -0.0076652654, -0.01092618, 0.007831283, 0.9999095, 0, 0, 0)
+shape = SubResource("SphereShape3D_y1pi2")
+
+[connection signal="body_entered" from="AggroZone" to="." method="_on_aggro_zone_body_entered"]
+[connection signal="body_exited" from="AggroZone" to="." method="_on_aggro_zone_body_exited"]
