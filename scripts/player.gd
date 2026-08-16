@@ -29,6 +29,8 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("shoot") && attackCooldown.time_left == 0:
 		shoot()
+		
+	
 
 	move_and_slide()
 
@@ -48,10 +50,15 @@ func shoot() -> void:
 	# Get player in screen pixels (Vector2)
 	var camera = get_viewport().get_camera_3d()
 	var player_screen_pos = camera.unproject_position(self.global_position)
+	print ("player screen position: " + str(player_screen_pos))
+	print(str(self.global_position))
 	
 	
 	# Calculate a 2D direction vector on the screen
 	var screen_direction = (mouse_pos - player_screen_pos).normalized()
+	print("screen dir x: " + str(screen_direction.x))
+	print("screen dir y: " + str(screen_direction.y))
+	
 	
 	# Convert that 2D direction into a 3D target destination
 	# We map screen X to world X, and screen Y to world Y (or world Z)

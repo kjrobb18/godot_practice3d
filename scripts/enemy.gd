@@ -42,7 +42,6 @@ func _process(delta: float) -> void:
 		current_state = EnemyState.IDLE
 		pat_timer.start(randf_range(2, 6))
 	
-	####print(EnemyState.keys()[current_state] + " at: " + str(pat_timer.time_left))
 	
 	
 	if current_state == EnemyState.PATROL:
@@ -78,7 +77,6 @@ func face_target(delta: float) -> void:
 	body_mesh.rotation.y = lerp_angle(body_mesh.rotation.y, target_angle, turn_speed * delta)
 	
 
-###TODO: Create bridge script on hitbox that relays to this method
 func take_damage(damage: int) -> void:
 	current_hp = current_hp - damage
 	if current_hp <= 0: 

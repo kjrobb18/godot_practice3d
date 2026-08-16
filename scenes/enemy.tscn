@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b612k8wdclwqt"]
 
 [ext_resource type="Script" uid="uid://basvqjho10hqt" path="res://scripts/enemy.gd" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://qh6si147swtg" path="res://scenes/hit_box.gd" id="2_md0e3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yq2i7"]
 
@@ -60,6 +61,7 @@ shape = SubResource("SphereShape3D_h1mgu")
 [node name="HitBox" type="Area3D" parent="." unique_id=35621788]
 collision_layer = 16
 collision_mask = 8
+script = ExtResource("2_md0e3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=2021380071]
 transform = Transform3D(0.9998254, -0.015067792, 0.011043271, 0.015152914, 0.9998558, -0.0076652654, -0.01092618, 0.007831283, 0.9999095, 0, 0, 0)

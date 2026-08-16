@@ -27,13 +27,13 @@ shape = SubResource("SphereShape3D_h1mgu")
 mesh = SubResource("SphereMesh_h1mgu")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1625431029]
-transform = Transform3D(1.9828256, 0.19649702, -0.1725992, 0.074611336, 0.8400444, 1.8134936, 0.25066856, -1.8043598, 0.8255005, -0.09972525, 4.3848286, 0.8906869)
+transform = Transform3D(1.9977795, 0.09421292, 0, -0.0744428, 1.578556, 1.2258141, 0.057743747, -1.2244534, 1.5803101, -0.06715346, 3.4642234, 2.4638247)
 fov = 92.81249
 near = 0.005
 far = 4002.55
 
 [node name="AttackCooldown" type="Timer" parent="." unique_id=15421821]
-wait_time = 0.1
+wait_time = 0.5
 one_shot = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=1214422998]
